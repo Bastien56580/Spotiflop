@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Bibliothèque de musiques incroyables</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Artiste</th>
+            <th scope="col">Lien</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        {% for titre in result %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ titre['titre'] }}</td>
+            <td>{{ titre['artiste'] }}</td>
+            <td><audio controls>
+                <source src="{{ url_for('download_music', file_name=titre['musiquePath']) }}" type="audio/mpeg">
+            </audio></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
